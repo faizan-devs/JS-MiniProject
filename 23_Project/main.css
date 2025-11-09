@@ -33,6 +33,26 @@
     font-weight: 600;
 }
 
+.launch-time {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+    /* space between items */
+    text-align: center;
+    /* ensures text inside is centered */
+}
+
+.launch-time div {
+    display: flex;
+    flex-direction: column;
+    /* stack number and label vertically */
+    align-items: center;
+    /* center horizontally */
+    justify-content: center;
+    /* center vertically */
+}
+
 .content h1 span {
     color: #ff3753;
 }
