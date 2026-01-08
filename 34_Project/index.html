@@ -1,211 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Digital Timer 2027</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Timer 2027</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Orbitron:wght@700;900&display=swap"
+        rel="stylesheet">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    background: #020202;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-}
+        body {
+            background: #020202;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
 
-/* Header */
-.header-text {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    text-align: center;
-}
+        /* Header */
+        .header-text {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+        }
 
-.header-text h1 {
-    font-size: 1.2rem;
-    letter-spacing: 6px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.5);
-    text-transform: uppercase;
-}
+        .header-text h1 {
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
 
-.header-text .year {
-    color: #00d2ff;
-    font-weight: 700;
-    text-shadow: 0 0 12px rgba(0,210,255,.6);
-}
+        .header-text .year {
+            color: #00d2ff;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(0, 210, 255, .6);
+        }
 
-/* Countdown layout */
-.countdown {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    max-width: 100%;
-    padding: 0 12px;
-}
+        /* Countdown layout */
+        .countdown {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            padding: 0 12px;
+        }
 
-/* Time box */
-.time-box {
-    background: rgba(0,210,255,.05);
-    border: 1px solid rgba(0,210,255,.2);
-    padding: 16px 18px;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    backdrop-filter: blur(6px);
-}
+        /* Time box */
+        .time-box {
+            background: rgba(0, 210, 255, .05);
+            border: 1px solid rgba(0, 210, 255, .2);
+            padding: 16px 18px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            backdrop-filter: blur(6px);
+        }
 
-/* 🔒 Stable digits */
-.number {
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: clamp(42px, 8vw, 110px);
-    color: #00d2ff;
-    line-height: 1;
-    text-shadow: 0 0 16px rgba(0,210,255,.5);
+        /* 🔒 Stable digits */
+        .number {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: clamp(42px, 8vw, 110px);
+            color: #00d2ff;
+            line-height: 1;
+            text-shadow: 0 0 16px rgba(0, 210, 255, .5);
 
-    display: inline-block;
-    width: 2.5ch;                 /* prevents shaking */
-    text-align: center;
-    font-variant-numeric: tabular-nums;
-}
+            display: inline-block;
+            width: 2.5ch;
+            /* prevents shaking */
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
 
-/* Days need more width */
-#days {
-    width: 4ch;
-}
+        /* Days need more width */
+        #days {
+            width: 4ch;
+        }
 
-.label {
-    margin-top: 8px;
-    font-size: .75rem;
-    letter-spacing: 3px;
-    color: rgba(0,210,255,.7);
-    text-transform: uppercase;
-    font-weight: 600;
-}
+        .label {
+            margin-top: 8px;
+            font-size: .75rem;
+            letter-spacing: 3px;
+            color: rgba(0, 210, 255, .7);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
 
-.separator {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.4rem;
-    color: rgba(0,210,255,.3);
-    margin-bottom: 20px;
-    animation: blink 1.5s infinite;
-}
+        .separator {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
+            color: rgba(0, 210, 255, .3);
+            margin-bottom: 20px;
+            animation: blink 1.5s infinite;
+        }
 
-@keyframes blink {
-    50% { opacity: 0; }
-}
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
 
-/* Tablet */
-@media (max-width: 850px) {
-    .separator { display: none; }
-}
+        /* Tablet */
+        @media (max-width: 850px) {
+            .separator {
+                display: none;
+            }
+        }
 
-/* Mobile */
-@media (max-width: 500px) {
-    .countdown {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
+        /* Mobile */
+        @media (max-width: 500px) {
+            .countdown {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
 
-    .number {
-        font-size: clamp(36px, 14vw, 64px);
-    }
+            .number {
+                font-size: clamp(36px, 14vw, 64px);
+            }
 
-    #days {
-        width: 3.5ch;
-    }
-}
-</style>
+            #days {
+                width: 3.5ch;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="header-text">
-    <h1>Time Remaining For <span class="year">2027</span></h1>
-</div>
-
-<div class="countdown">
-    <div class="time-box">
-        <span class="number" id="days">000</span>
-        <span class="label">Days</span>
+    <div class="header-text">
+        <h1>Time Remaining For <span class="year">2027</span></h1>
     </div>
 
-    <div class="separator">:</div>
+    <div class="countdown">
+        <div class="time-box">
+            <span class="number" id="days">000</span>
+            <span class="label">Days</span>
+        </div>
 
-    <div class="time-box">
-        <span class="number" id="hours">00</span>
-        <span class="label">Hours</span>
+        <div class="separator">:</div>
+
+        <div class="time-box">
+            <span class="number" id="hours">00</span>
+            <span class="label">Hours</span>
+        </div>
+
+        <div class="separator">:</div>
+
+        <div class="time-box">
+            <span class="number" id="minutes">00</span>
+            <span class="label">Minutes</span>
+        </div>
+
+        <div class="separator">:</div>
+
+        <div class="time-box">
+            <span class="number" id="seconds">00</span>
+            <span class="label">Seconds</span>
+        </div>
     </div>
 
-    <div class="separator">:</div>
+    <script>
+        const TARGET = new Date("Apr 1, 2026 00:00:00").getTime();
 
-    <div class="time-box">
-        <span class="number" id="minutes">00</span>
-        <span class="label">Minutes</span>
-    </div>
+        const els = {
+            days: document.getElementById("days"),
+            hours: document.getElementById("hours"),
+            minutes: document.getElementById("minutes"),
+            seconds: document.getElementById("seconds"),
+        };
 
-    <div class="separator">:</div>
+        function updateTimer() {
+            let diff = TARGET - Date.now();
 
-    <div class="time-box">
-        <span class="number" id="seconds">00</span>
-        <span class="label">Seconds</span>
-    </div>
-</div>
+            if (diff <= 0) {
+                els.days.textContent = "000";
+                els.hours.textContent =
+                    els.minutes.textContent =
+                    els.seconds.textContent = "00";
+                return;
+            }
 
-<script>
-const TARGET = new Date("Jan 1, 2027 00:00:00").getTime();
+            const d = Math.floor(diff / 86400000);
+            diff %= 86400000;
+            const h = Math.floor(diff / 3600000);
+            diff %= 3600000;
+            const m = Math.floor(diff / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
 
-const els = {
-    days: document.getElementById("days"),
-    hours: document.getElementById("hours"),
-    minutes: document.getElementById("minutes"),
-    seconds: document.getElementById("seconds"),
-};
+            els.days.textContent = String(d).padStart(3, "0");
+            els.hours.textContent = String(h).padStart(2, "0");
+            els.minutes.textContent = String(m).padStart(2, "0");
+            els.seconds.textContent = String(s).padStart(2, "0");
+        }
 
-function updateTimer() {
-    let diff = TARGET - Date.now();
-
-    if (diff <= 0) {
-        els.days.textContent = "000";
-        els.hours.textContent =
-        els.minutes.textContent =
-        els.seconds.textContent = "00";
-        return;
-    }
-
-    const d = Math.floor(diff / 86400000);
-    diff %= 86400000;
-    const h = Math.floor(diff / 3600000);
-    diff %= 3600000;
-    const m = Math.floor(diff / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-
-    els.days.textContent = String(d).padStart(3, "0");
-    els.hours.textContent = String(h).padStart(2, "0");
-    els.minutes.textContent = String(m).padStart(2, "0");
-    els.seconds.textContent = String(s).padStart(2, "0");
-}
-
-setInterval(updateTimer, 1000);
-updateTimer();
-</script>
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 
 </body>
+
 </html>
